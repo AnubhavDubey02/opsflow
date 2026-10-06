@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.coverage
+htmlcov/
+
+# Local databases and generated data are never committed.
+*.db
+*.db-wal
+*.db-shm
+data/
+
+# Secrets / local configuration.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Confidentiality denylist lives OUTSIDE the repo; this is a safety net.
+denylist*.txt

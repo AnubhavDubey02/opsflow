@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opsflow"
+version = "0.1.0"
+description = "Reliable data & AI operations pipeline: idempotent ingestion, validation, review, reconciliation, audit."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = []  # the core is dependency-free on purpose
+
+[project.optional-dependencies]
+# Phases 3b-11 (not required for the vertical slice).
+api = ["fastapi>=0.115", "uvicorn>=0.30", "pydantic>=2.7"]
+postgres = ["psycopg[binary]>=3.2", "sqlalchemy>=2.0"]
+dev = ["pytest>=8", "ruff>=0.6", "coverage>=7"]
+
+[project.scripts]
+opsflow = "opsflow.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["opsflow*"]
+
+[tool.setuptools.package-data]
+"opsflow.storage" = ["*.sql"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
